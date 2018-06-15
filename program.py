@@ -14,7 +14,7 @@ def draw_header():
 
 
 def get_location():
-    country = input('Please enter a country code: ')
+    country = input('Please enter a country: ')
     country = get_country_code(country)
     while country is None:
         country = input('Invalid country, please try again: ')
@@ -30,7 +30,7 @@ def get_location():
 
 
 def get_country_code(country):
-    country = country.capitalize()
+    country = country.title()
     req = requests.get('https://www.worldatlas.com/aatlas/ctycodes.htm')
     soup = bs4.BeautifulSoup(req.text, "html.parser")
     code = soup.find(class_='misc-content').find_next('td', string=country)
